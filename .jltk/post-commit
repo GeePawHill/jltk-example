@@ -1,0 +1,4 @@
+#!/bin/sh
+# Get repo's working folder, repo's .wtc folder, and the .wtc folder in user home.
+root="$(git rev-parse --show-toplevel)"
+mvn validate
