@@ -3,3 +3,9 @@
 root="$(git rev-parse --show-toplevel)"
 cwd="$(pwd)"
 echo "Post-Commit $root from $cwd"
+if [ -e .commit ] ; then
+    rm .commit
+    java -jar .jltk/jltk-monitor.jar --post-commit
+    git commit --amend -C HEAD --no-verify
+fi
+

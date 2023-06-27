@@ -3,3 +3,4 @@
 root="$(git rev-parse --show-toplevel)"
 cwd="$(pwd)"
 echo "Pre-Commit $root from $cwd"
+touch .commit

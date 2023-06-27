@@ -1,3 +1,4 @@
 target/
 **/.commit
 .jltk/jltk-monitor.jar
+.jltk/jltk.key
