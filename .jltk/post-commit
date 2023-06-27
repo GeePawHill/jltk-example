@@ -1,11 +1,11 @@
 #!/bin/sh
-# Get repo's working folder, repo's .wtc folder, and the .wtc folder in user home.
-root="$(git rev-parse --show-toplevel)"
-cwd="$(pwd)"
-echo "Post-Commit $root from $cwd"
 if [ -e .commit ] ; then
-    rm .commit
-    java -jar .jltk/jltk-monitor.jar --post-commit
-    git commit --amend -C HEAD --no-verify
+echo "Post-Commit $root from $cwd"
+  # Get repo's working folder, repo's .wtc folder, and the .wtc folder in user home.
+  root="$(git rev-parse --show-toplevel)"
+  cwd="$(pwd)"
+  rm .commit
+  java -jar .jltk/jltk-monitor.jar --post-commit
+  git commit --amend -C HEAD --no-verify
 fi
 
