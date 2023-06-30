@@ -14,7 +14,7 @@ public class GuessingGameTest {
 
     @Test
     public void guessIsBelowRange() {
-        // Comment added to force commit, delete at will.
+        // Comment added to force commit, delete at will. Again.
         String actual = game.guess(15, 1, 100, -1);
         assertEquals(actual, GuessingGame.GUESS_OUT_OF_BOUNDS);
     }
