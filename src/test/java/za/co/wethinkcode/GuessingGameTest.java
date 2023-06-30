@@ -1,57 +1,61 @@
 package za.co.wethinkcode;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.PrintStream;
-
+import org.geepawhill.jltk.script.*;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.condition.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.io.*;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GuessingGameTest {
 
     GuessingGame game = new GuessingGame(15, 10, 100);
 
     @Test
-    public void guessIsNotNumber() {
-        String actual = game.guess(15, 1, 100, "string");
-        assertEquals(actual, GuessingGame.GUESS_MUST_BE_INTEGER);
-    }
-
-    @Test
     public void guessIsBelowRange() {
-        String actual = game.guess(15, 1, 100, "-1");
+        // added to force commit
+        String actual = game.guess(15, 1, 100, -1);
         assertEquals(actual, GuessingGame.GUESS_OUT_OF_BOUNDS);
     }
 
     @Test
     public void guessIsAboveRange() {
-        String actual = game.guess(15, 1, 100, "101");
+        String actual = game.guess(15, 1, 100, 101);
         assertEquals(actual, GuessingGame.GUESS_OUT_OF_BOUNDS);
     }
 
     @Test
     public void guessIsTooLow() {
-        String actual = game.guess(15, 1, 100, "10");
+        String actual = game.guess(15, 1, 100, 10);
         assertEquals(actual, GuessingGame.TOO_LOW);
     }
 
     @Test
     public void guessIsTooHigh() {
-        String actual = game.guess(15, 1, 100, "30");
+        String actual = game.guess(15, 1, 100, 30);
         assertEquals(actual, GuessingGame.TOO_HIGH);
     }
 
     @Test
     public void guessIsJustRight() {
-        String actual = game.guess(15, 1, 100, "15");
+        String actual = game.guess(15, 1, 100, 15);
         assertEquals(actual, GuessingGame.justRight(15));
     }
 
     @Test
-    public void between1and100NumberIs34() {
+    public void scriptTest() {
+        new ConsoleTester()
+                .computerPrompts("Guess a number between 1 and 100: ")
+                .humanSays("34")
+                .computerSays("Congratulations! You guessed the number 34!")
+                .computerSays("abc")
+                .run(new GuessingGame(34, 1,100)::play);
+    }
 
+    @DisabledOnOs(OS.WINDOWS)
+    @Test
+    public void between1and100NumberIs34() {
         InputStream stdin = System.in;
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(byteArrayOutputStream);
@@ -68,11 +72,11 @@ public class GuessingGameTest {
         String outputText = byteArrayOutputStream.toString();
 
         String expected = "Guess a number between 1 and 100: Too low!\n" +
-                          "Guess a number between 1 and 100: Guess must be Integer!\n" +
-                          "Guess a number between 1 and 100: Too low!\n" +
-                          "Guess a number between 1 and 100: Too low!\n" +
-                          "Guess a number between 1 and 100: Too high!\n" +
-                          "Guess a number between 1 and 100: Congratulations! You guessed the number 34!\n";
+                "Guess a number between 1 and 100: Guess must be Integer!\n" +
+                "Guess a number between 1 and 100: Too low!\n" +
+                "Guess a number between 1 and 100: Too low!\n" +
+                "Guess a number between 1 and 100: Too high!\n" +
+                "Guess a number between 1 and 100: Congratulations! You guessed the number 34!\n";
 
         assertEquals(expected, outputText);
     }

@@ -24,6 +24,11 @@
             <version>5.9.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.geepawhill</groupId>
+            <artifactId>jltk</artifactId>
+            <version>LATEST</version>
+        </dependency>
     </dependencies>
 
     <build>
