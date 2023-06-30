@@ -2,7 +2,7 @@
 if [ -e .commit ] ; then
   echo "Post-Commit"
   rm .commit
-  java -jar .jltk/jltk-monitor.jar --post-commit
+  # java -jar .jltk/jltk-monitor.jar --post-commit
   git add .jltk/*.jltk
   git commit --amend -C HEAD --no-verify
 fi
