@@ -1,4 +1,4 @@
 target/
 **/.commit
 .jltk/jltk-monitor.jar
-.jltk/*.tmp
+.jltk/*.jltt
