@@ -2,8 +2,8 @@
 if [ -e .commit ] ; then
   echo "Post-Commit"
   rm .commit
-  # java -jar .jltk/jltk-monitor.jar --post-commit
-  git add .jltk/*.jltk
+  java -jar .jltk/jltk-monitor.jar --post-commit
+  git add .jltk/*.jltl
   git commit --amend -C HEAD --no-verify
 fi
 
